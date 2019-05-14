@@ -7,11 +7,7 @@
             "navigation" : [
                 {
                     "page" : "index.md",
-                    "title" : "Home"
-                },
-                {
-                    "page" : "services.md",
-                    "title" : "Microservices"
+                    "title" : "home"
                 }
             ]
         }

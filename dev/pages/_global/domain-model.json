@@ -5,12 +5,11 @@
             {
                 "type" : "ENTERPRISE",
                 "name" : "Enterprise wide services",
+                "state" : "active",
                 "domains" : [
                     {
                         "name" : "ARCHITECTURE",
                         "description" : "Enterprise Architecture",
-                        "repositoryURL": "",
-                        "apiDocsURL" : "",
                         "resources": [ ]
                     }
                 ]
@@ -22,8 +21,7 @@
                     {
                         "name": "WALKS",
                         "description": "Management of registered walks",
-                        "repositoryURL": "/pages/business/walks/docs",
-                        "apiDocsURL" : "",
+                        "state" : "active",
                         "resources": [
                             {
                                 "name": "applications",
@@ -46,8 +44,7 @@
                     {
                         "name": "RUNS",
                         "description": "Management of registered runs",
-                        "repositoryURL": "",
-                        "apiDocsURL" : "",
+                        "state" : "active",
                         "resources": [
                             {
                                 "name": "applications",
@@ -68,9 +65,9 @@
                         ]
                     },
                     {
-                        "name": "CLIENT_SERVICES",
+                        "name": "CLIENT-SERVICES",
                         "description": "Department wide common clinet services such as appointments, translations, complaints.",
-                        "repositoryURL": "",
+                        "state" : "active",
                         "resources": [
                             {
                                 "name": "appointments",
@@ -95,12 +92,11 @@
             {
                 "type" : "WORLDWALKS",
                 "name" : "World walks organisation functions",
+                "state" : "active",
                 "domains" : [
                     {
-                        "names" : "REGISTER",
+                        "name" : "REGISTER",
                         "description" : "",
-                        "repositoryURL": "",
-                        "apiDocsURL" : "",
                         "resources": [
                             {
                                 "name": "registrations",

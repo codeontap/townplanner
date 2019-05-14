@@ -1,3 +1,6 @@
-# Runs Domain
+---
+---
 
-The runs domain is responsible for the management of runs registrations within the Ministry of silly walks
+# Run Domain
+
+The runs domain is responsible for the registration of runs within the ministry of silly walks
