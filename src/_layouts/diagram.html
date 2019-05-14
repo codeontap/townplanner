@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+<body>
+{%- if page.data -%}
+{%- assign model = site.data[page.data].enterprise -%}
+{%- endif -%}
+{%- if model -%}
+<div class="diagram-content">
+    <h1>{{ model.name }}</h1>
+    <div class="items-wrapper">
+        <div class="items-wrapper">
+            {%- for layer in model.layers %}
+            <div class="layer-item">
+                <div class="layer-name">{{ layer.name }}</div>
+                <div class="layer-content {{ layer.name | slugify }}-layer">
+                    {%- for domain in layer.domains %}
+                    <div class="item domain-item{% if domain.repositoryURL == '' %} no-link{% endif %}">
+                        <div class="domain-name">{{ domain.name }}</div>
+                        <div class="domain-content">
+                            {%- if domain.repositoryURL != '' %}<a href="{{site.url}}/{{ domain.name | slugify }}-api/index.html" title="{{ domain.description }}">{{ domain.name }}</a>{% endif -%}
+                            {% for resource in domain.resources %}
+                            <div class="item resource-item">
+                                {{ resource.name }}
+                                {%- if domain.repositoryURL != '' -%}<a href="http://docs.api-mock-e4.{{ domain.name | slugify }}.apinp.cp1.border.gov.au/#/{{ resource.name | slugify }}" target="_blank" title="{{ resource.description }}">{{ resource.name }}</a>{% endif %}
+                            </div>
+                            {%- endfor %}
+                        </div>
+                    </div>
+                    {%- endfor %}
+                </div>
+            </div>
+            {%- endfor %}
+        </div>
+    </div>
+</div>
+{%- endif -%}
+{{ content }}
+</body>
+</html>

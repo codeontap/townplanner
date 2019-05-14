@@ -1,0 +1,67 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Client Services",
+    "description": "Shared client servies APi",
+    "version": "1.0.0"
+  },
+  "host": "api.clientservices.msw.io",
+  "basePath": "/v1",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/appointments": {
+      "get": {
+        "summary": "Returns a list of appointments.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/calendars": {
+      "get": {
+        "summary": "Returns a list of calendars.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/physiotherapists": {
+      "get": {
+        "summary": "Returns a list of physiotherapists.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/physiotherapistjobs": {
+      "get": {
+        "summary": "Returns a list of physiotherapists jobs",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

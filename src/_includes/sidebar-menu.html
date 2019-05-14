@@ -1,0 +1,26 @@
+<ul class="sidebar-menu">
+    {%- assign current = page.url | downcase | split: '/' -%}
+    <li class="menu-title"><a href="{{site.url}}">Architecture</a></li>
+    {%- assign model = site.data._global.domain-model.enterprise -%}
+    {%- for layer in model.layers %}
+        {{ layer_data }}
+        <li class="{{ layer.name | slugify }}-menu menu-subtitle {% if current_domain == layer.name | slugify %} active{% endif %}">
+        <span class="layer-name" title="{{ layer.description }}">{{ layer.type | capitalize }}</span>
+        {%- for domain in layer.domains %}
+            {%- if domain.repositoryURL != '' %}
+            {%- assign current_domain = current[1]  -%}
+                <li class="{{ domain.name | slugify }}-menu {% if current_domain == domain.name | slugify %} active{% endif %}">
+                    <a class="domain-name" href="{{site.url}}/pages/{{layer.type | slugify}}/{{ domain.name | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a><span class="accordion">&nbsp;</span>
+                    {%- assign domain_data = domain.name | lowercase %-}
+                    {%- assign collections = site.data["business"][domain_data] -%}
+                    {{ collections }}
+                    <ul class="sidebar-submenu">
+                        {%- for collection in collections %}
+                        <a href="{{site.url}}/pages/{{layer.type | slugify}}/{{ domain.name | slugify }}/{{collection.name}}/index.html" title="{{ collection.description }}">{{ collection.name }}</a>
+                        {%- endfor -%}
+                    </ul>
+                </li>
+            {% endif -%}
+        {%- endfor %}
+    {%- endfor %}
+</ul>
