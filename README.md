@@ -76,6 +76,7 @@ When town planner processes this document collection you would have a folder on 
 
 ## Supported Types
 
-Townplanner currently supports 2 collection types
-    - markdown - This will generate the documentation using the provided markdown files using the jekyll markdown engine
-    - swagger - This will generate a swagger-ui using the specs in the folder
+Townplanner currently supports 2 collection types:
+
+- **markdown** - This will generate the documentation using the provided markdown files using the jekyll markdown engine
+- **swagger** - This will generate a swagger-ui using the specs in the folder
