@@ -1,0 +1,14 @@
+{
+    "collections" : [
+        {
+            "name" : "Documentation",
+            "type" : "markdown",
+            "directory" : "/docs"
+        },
+        {
+            "name" : "APIs",
+            "type" : "swagger",
+            "directory" : "/apis"
+        }
+    ]
+}
