@@ -3,7 +3,13 @@
         {
             "name" : "Documentation",
             "type" : "markdown",
-            "directory" : "/docs"
+            "directory" : "/docs",
+            "navigation" : [
+                {
+                    "page" : "services.md",
+                    "title" : "Microservices"
+                }
+            ]
         }
     ]
 }

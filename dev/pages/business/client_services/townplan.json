@@ -3,7 +3,13 @@
         {
             "name" : "Documentation",
             "type" : "markdown",
-            "directory" : "/docs"
+            "directory" : "/docs",
+            "navigation" : [
+                {
+                    "page" : "index.md",
+                    "title" : "Home"
+                }
+            ]
         },
         {
             "name" : "APIs",
