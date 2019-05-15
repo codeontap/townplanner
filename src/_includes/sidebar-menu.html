@@ -4,7 +4,7 @@
     {%- assign current_domain = current[3] -%}
     {%- assign collection_url = current[4] -%}
     {%- assign last_url = current.last | replace: '.md', '.html' -%}
-    <li class="menu-title"><a href="{{site.url}}">Architecture</a></li>
+    <li class="menu-title"><a href="/">Home</a></li>
     {%- assign model = site.data._global.domain-model.enterprise -%}
     {%- for layer in model.layers %}
         {%- assign layer_type = layer.type | downcase -%}

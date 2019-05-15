@@ -8,7 +8,7 @@
             <div class="layer-content {{ layer.name | slugify }}-layer items-in-row-{{layer.domains.size}}">
                 {%- if layer.domains.size > 0 -%}
                 {%- for domain in layer.domains %}
-                <div class="item domain-item{% if domain.repositoryURL == '' %} no-link{% endif %}">
+                <div class="item domain-item state-{{domain.state}}">
                     <div class="domain-name">{{ domain.name }}</div>
                     <div class="domain-content">
                         <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name }}</a>
