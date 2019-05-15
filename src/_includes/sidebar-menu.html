@@ -10,7 +10,7 @@
         {%- assign layer_type = layer.type | downcase -%}
         {%- assign layer_directory = layer.directory -%}
         <li class="{{ layer.name | slugify }}-menu menu-subtitle{% if current_layer == layer_type | downcase %} active{% endif %}">
-        <span class="layer-name" title="{{ layer.name }}">{{ layer.type | capitalize }}</span>
+        <span class="layer-name" title="{{ layer.name }}">{{ layer.name | capitalize }}</span>
             {% capture layer_type %}{{ layer.type | downcase  }}{% endcapture %}
             {%- for domain in layer.domains %}
                 {% capture domain_data %}{{ domain.name | downcase  }}{% endcapture %}

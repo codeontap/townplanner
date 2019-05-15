@@ -18,7 +18,7 @@
             {%- assign collection_data = site.data[layer][domain][collection_name] -%}
 
             {%- for api in collection_documents -%}
-                {%- assign data_path = api.page | remove: ".json" | split: "/"  -%}
+                {%- assign data_path = api.page | remove: ".json" | remove: ".yml" | remove: ".yaml" | split: "/"  -%}
                 {%- assign api_data = collection_data -%}
                 {%- for path in data_path -%}
                     {%- assign api_data = api_data[path] -%}

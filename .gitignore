@@ -1,0 +1,5 @@
+src/_data/*
+src/_site/*
+src/pages
+src/pages/*
+src/.sass-cache/*
