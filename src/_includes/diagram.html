@@ -11,12 +11,12 @@
                 <div class="item domain-item{% if domain.repositoryURL == '' %} no-link{% endif %}">
                     <div class="domain-name">{{ domain.name }}</div>
                     <div class="domain-content">
-                        {%- if domain.repositoryURL != '' %}<a href="{{site.url}}/{{ domain.name | slugify }}-api/index.html" title="{{ domain.description }}">{{ domain.name }}</a>{% endif -%}
+                        <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name }}</a>
                         {% for resource in domain.resources %}
-                        <div class="item resource-item">
+                        <span class="item resource-item">
                             {{ resource.name }}
-                            {%- if domain.apiDocsURL != '' and domain.repositoryURL != '' -%}<a href="{{ domain.apiDocsURL }}/#/{{ resource.name | slugify }}" target="_blank" title="{{ resource.description }}">{{ resource.name }}</a>{% endif %}
-                        </div>
+                            <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ resource.name }}</a>
+                        </span>
                         {%- endfor %}
                     </div>
                 </div>
