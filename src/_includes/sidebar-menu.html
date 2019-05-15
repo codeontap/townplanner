@@ -15,13 +15,13 @@
             {%- for domain in layer.domains %}
                 {% capture domain_data %}{{ domain.name | downcase  }}{% endcapture %}
                 {%- assign domain_directory = domain.directory -%}
-                <li class="{{ domain.name | slugify }}-menu {% if current_layer == layer_type and current_domain == domain_data %} active{% endif %}">
+                <li class="{{ domain.name | slugify }}-menu {% if current_layer == layer_directory and current_domain == domain_data %} active{% endif %}">
                     <a class="domain-name" href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a><span class="accordion">&nbsp;</span>
                     {% assign collections = site.data[layer_directory][domain_directory].townplan.collections %}
                     <ul class="sidebar-submenu">
                         {%- for collection in collections %}
                         <li>
-                            <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/{{collection.directory}}/index.html" {% if current_layer == layer_type and current_domain == domain_data and collection_url == collection.directory %}class="active"{% endif %}>{{ collection.name }}</a>
+                            <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/{{collection.directory}}/index.html" {% if current_layer == layer_directory and current_domain == domain_data and collection_url == collection.directory %}class="active"{% endif %}>{{ collection.name }}</a>
                             <ul class="sidebar-inner-submenu">
                                 {%- for document in collection.documents %}
                                 <li>

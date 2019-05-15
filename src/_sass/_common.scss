@@ -467,29 +467,29 @@ dl dd {
   margin-bottom: 16px;
 }
 
-table {
+.static-content table{
   display: block;
   width: 100%;
   overflow: auto;
-}
 
-table th {
-  font-weight: 600;
-}
+  th {
+    font-weight: 600;
+  }
 
-table th,
-table td {
-  padding: 6px 13px;
-  border: 1px solid #dfe2e5;
-}
+  th,
+  td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+  }
 
-table tr {
-  background-color: #fff;
-  border-top: 1px solid #c6cbd1;
-}
+  tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1;
+  }
 
-table tr:nth-child(2n) {
-  background-color: #f6f8fa;
+  tr:nth-child(2n) {
+    background-color: #f6f8fa;
+  }
 }
 
 img {
@@ -570,5 +570,5 @@ hr {
 }
 
 .swagger-ui pre.version{
-  background: #7d8492;
+  background: transparent;
 }
