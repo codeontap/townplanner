@@ -2,6 +2,7 @@
     {%- assign current = page.url | downcase | split: '/' -%}
     {%- assign current_layer = current[2] -%}
     {%- assign current_domain = current[3] -%}
+    {%- assign collection_url = current[4] -%}
     {%- assign last_url = current.last | replace: '.md', '.html' -%}
     <li class="menu-title"><a href="{{site.url}}">Architecture</a></li>
     {%- assign model = site.data._global.domain-model.enterprise -%}
@@ -12,13 +13,13 @@
             {% capture layer_type %}{{ layer.type | downcase  }}{% endcapture %}
             {%- for domain in layer.domains %}
                 {% capture domain_data %}{{ domain.name | downcase  }}{% endcapture %}
-                <li class="{{ domain.name | slugify }}-menu {% if current_domain == domain_data %} active{% endif %}">
+                <li class="{{ domain.name | slugify }}-menu {% if current_layer == layer_type and current_domain == domain_data %} active{% endif %}">
                     <a class="domain-name" href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a><span class="accordion">&nbsp;</span>
                     {% assign collections = site.data[layer_type][domain_data].townplan.collections %}
                     <ul class="sidebar-submenu">
                         {%- for collection in collections %}
                         <li>
-                            <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/{{collection.directory}}/index.html">{{ collection.name }}</a>
+                            <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/{{collection.directory}}/index.html" {% if current_layer == layer_type and current_domain == domain_data and collection_url == collection.directory %}class="active"{% endif %}>{{ collection.name }}</a>
                             <ul class="sidebar-inner-submenu">
                                 {%- for document in collection.documents %}
                                 <li>
@@ -28,7 +29,7 @@
                                     {% else %}
                                         {% capture document_page %}{{document.page | replace: '.md', '.html'}}{% endcapture %}
                                     {% endif %}
-                                    <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/{{collection.directory}}/{{document_page}}" {% if current_layer == layer_type and current_domain == domain_data and last_url == document_page %}class="active"{% endif %}>{{document.title}}</a>
+                                    <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/{{collection.directory}}/{{document_page}}" class="inner-sidebar-menu-item{% if current_layer == layer_type and current_domain == domain_data and last_url == document_page %} active{% endif %}">{{document.title}}</a>
                                 </li>
                                 {%- endfor -%}
                             </ul>

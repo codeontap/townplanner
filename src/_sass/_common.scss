@@ -96,6 +96,10 @@ img{
         a{
           padding: 0;
           font-size: 14px;
+
+          &.active{
+            border-color: transparent;
+          }
         }
       }
     }
