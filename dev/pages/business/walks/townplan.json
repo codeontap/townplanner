@@ -3,8 +3,8 @@
         {
             "name" : "Documentation",
             "type" : "markdown",
-            "directory" : "/docs",
-            "navigation" : [
+            "directory" : "docs",
+            "documents" : [
                 {
                     "page" : "index.md",
                     "Title" : "Home"
@@ -14,7 +14,17 @@
         {
             "name" : "APIs",
             "type" : "swagger",
-            "directory" : "/apis"
+            "directory" : "apis",
+            "documents" : [
+                {
+                    "page" : "walkregister/integration/default/v1/swagger.json",
+                    "title" : "Walks Register - Integration - V1"
+                },
+                {
+                    "page" : "walkregister/preproduction/default/v1/swagger.json",
+                    "title" : "Walks Register - Preproduction - V1"
+                }
+            ]
         }
     ]
 }

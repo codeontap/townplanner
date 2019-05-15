@@ -3,8 +3,8 @@
         {
             "name" : "Documentation",
             "type" : "markdown",
-            "directory" : "/docs",
-            "navigation" : [
+            "directory" : "docs",
+            "documents" : [
                 {
                     "page" : "index.md",
                     "title" : "home"

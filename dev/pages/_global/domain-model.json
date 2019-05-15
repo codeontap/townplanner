@@ -40,52 +40,6 @@
                                 "description" : ""
                             }
                         ]
-                    },
-                    {
-                        "name": "RUNS",
-                        "description": "Management of registered runs",
-                        "state" : "active",
-                        "resources": [
-                            {
-                                "name": "applications",
-                                "description": ""
-                            },
-                            {
-                                "name": "applicants",
-                                "description": ""
-                            },
-                            {
-                                "name": "tests",
-                                "description": ""
-                            },
-                            {
-                                "name" : "certificates",
-                                "description" : ""
-                            }
-                        ]
-                    },
-                    {
-                        "name": "CLIENT-SERVICES",
-                        "description": "Department wide common clinet services such as appointments, translations, complaints.",
-                        "state" : "active",
-                        "resources": [
-                            {
-                                "name": "appointments",
-                                "description": ""
-                            },
-                            {
-                                "name": "calendars",
-                                "description": ""
-                            },
-                            {
-                                "name": "physiotherapists",
-                                "description": ""
-                            },
-                            {
-                                "name": "physiotherapist-jobs",
-                                "description": ""
-                            }
-                        ]
                     }
                 ]
             },
