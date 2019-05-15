@@ -4,11 +4,13 @@
         "layers" : [
             {
                 "type" : "ENTERPRISE",
+                "directory" : "enterprise",
                 "name" : "Enterprise wide services",
                 "state" : "active",
                 "domains" : [
                     {
                         "name" : "ARCHITECTURE",
+                        "directory" : "architecture",
                         "description" : "Enterprise Architecture",
                         "resources": [ ]
                     }
@@ -17,11 +19,13 @@
             {
                 "type": "BUSINESS",
                 "name": "Ministry of Silly Walks functions",
+                "directory" : "business",
                 "domains": [
                     {
                         "name": "WALKS",
                         "description": "Management of registered walks",
                         "state" : "active",
+                        "directory" : "walks",
                         "resources": [
                             {
                                 "name": "applications",
@@ -47,10 +51,12 @@
                 "type" : "WORLDWALKS",
                 "name" : "World walks organisation functions",
                 "state" : "active",
+                "directory" : "worldwalks",
                 "domains" : [
                     {
                         "name" : "REGISTER",
                         "description" : "",
+                        "directory" : "register",
                         "resources": [
                             {
                                 "name": "registrations",
