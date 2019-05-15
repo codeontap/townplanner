@@ -8,12 +8,12 @@
             {% capture layer_type %}{{ layer.type | downcase  }}{% endcapture %}
             {%- for domain in layer.domains %}
                 <li class="{{ domain.name | slugify }}-menu {% if current_domain == domain.name | slugify %} active{% endif %}">
-                    <a class="domain-name" href="{{site.url}}/pages/{{layer.type | slugify}}/{{ domain.name | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a><span class="accordion">&nbsp;</span>
+                    <a class="domain-name" href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a><span class="accordion">&nbsp;</span>
                     {% capture domain_data %}{{ domain.name | downcase  }}{% endcapture %}
                     {% assign collections = site.data[layer_type][domain_data].townplan.collections %}
                     <ul class="sidebar-submenu">
                         {%- for collection in collections %}
-                        <li><a href="{{site.url}}/pages/{{layer.type | slugify}}/{{ domain.name | slugify }}/{{collection.directory}}/index.html" title="{{ collection.description }}">{{ collection.name }}</a></li>
+                        <li><a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/{{collection.directory}}/index.html" title="{{ collection.description }}">{{ collection.name }}</a></li>
                         {%- endfor -%}
                     </ul>
                 </li>
