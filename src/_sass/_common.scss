@@ -53,12 +53,12 @@ img{
     list-style: none;
 
     li{
-      text-align: right;
+      text-align: left;
       position: relative;
-      padding: 6px 0;
+      padding: 3px 0;
 
       &.menu-subtitle{
-        padding: 6px 26px 8px 0;
+        padding: 6px 0 8px 25px;
         background: lighten($color: #9dc3e6, $amount: 10);
         color: #939393;
         font-weight: 500;
@@ -66,7 +66,7 @@ img{
       }
 
       &.menu-title{
-        padding: 6px 26px 8px 0;
+        padding: 6px 0 8px 15px;
         background: #9dc3e6;
         color: #fff;
         font-weight: 600;
@@ -85,6 +85,19 @@ img{
         }
       }
 
+      .sidebar-inner-submenu{
+        list-style: none;
+        padding: 5px 0 0 10px;
+
+        li{
+          padding: 0;
+        }
+
+        a{
+          padding: 0;
+          font-size: 14px;
+        }
+      }
     }
 
     a{
@@ -99,7 +112,7 @@ img{
         color: #313e48;
         font-size: 18px;
         display: inline-block;
-        padding-right: 0;
+        padding: 0 0 0 30px;
         margin: 0 0 10px 0;
       }
 
@@ -120,6 +133,7 @@ img{
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.2s ease-out;
+      margin: 0 0 0 10px;
     }
 
     .active{
@@ -549,4 +563,8 @@ kbd {
 
 hr {
   border-bottom-color: #eee;
+}
+
+.swagger-ui pre.version{
+  background: #7d8492;
 }
