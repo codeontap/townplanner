@@ -1,0 +1,38 @@
+<script src="//unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
+<link rel="stylesheet" href="//unpkg.com/swagger-ui-dist@3/swagger-ui.css">
+
+<div class="main-wrapper">
+    <div class="main-content">
+        <div class="page-sidebar">
+            {% include sidebar-menu.html %}
+        </div>
+        <div class="page-content">
+
+            {%- assign page_dirs = page.url | split: "/" -%}
+            {%- assign layer = page_dirs[2] -%}
+            {%- assign domain = page_dirs[3] -%}
+            {%- assign collection_name = page_dirs[4] -%}
+            {%- assign collection_plan = site.data[layer][domain].townplan.collections | where: "directory", collection_name -%}
+            {%- assign collection_plan = collection_plan[0] -%}
+            {%- assign collection_documents = collection_plan.documents -%}
+            {%- assign collection_data = site.data[layer][domain][collection_name] -%}
+
+            {%- for api in collection_documents -%}
+                {%- assign data_path = api.page | remove: ".json" | split: "/"  -%}
+                {%- assign api_data = collection_data -%}
+                {%- for path in data_path -%}
+                    {%- assign api_data = api_data[path] -%}
+                {%- endfor -%}
+                {%- assign api_id = data_path | join: "_" -%}
+
+                <div id="swagger-ui-{{api_id}}"></div>
+                <script>
+                    const {{api_id}} = SwaggerUIBundle({
+                        spec:{{api_data | jsonify }},
+                        dom_id: '#swagger-ui-{{api_id}}'
+                    })
+                </script>
+            {%- endfor -%}  
+        </div>
+    </div>
+</div>

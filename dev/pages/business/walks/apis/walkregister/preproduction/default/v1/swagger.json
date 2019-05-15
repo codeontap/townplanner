@@ -1,0 +1,41 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Walks Register API",
+      "description": "Registration service for silly walks",
+      "version": "1.0.0"
+    },
+    "host": "api-preproduction.walksregister.msw.io",
+    "basePath": "/v1",
+    "schemes": [
+      "https"
+    ],
+    "paths": {
+      "/applications": {
+        "get": {
+          "summary": "Returns a list of applications.",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/applicants": {
+        "get": {
+          "summary": "Returns a list of applicants.",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    }
+  }
