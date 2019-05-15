@@ -17,7 +17,11 @@
                 {%- assign domain_directory = domain.directory -%}
                 <li class="{{ domain.name | slugify }}-menu {% if current_layer == layer_directory and current_domain == domain_data %} active{% endif %}">
                     {% assign collections = site.data[layer_directory][domain_directory].townplan.collections %}
-                    <a class="domain-name" href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a>{% if collections.first %}<span class="accordion">&nbsp;</span>{% endif %}
+                    {% if collections.first %}
+                        <a class="domain-name" href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a><span class="accordion">&nbsp;</span>
+                    {% else %}
+                        <span class="domain-name">{{ domain.name | capitalize }}</span>
+                    {% endif %}
                     {% if collections.first %}
                     <ul class="sidebar-submenu">
                         {%- for collection in collections %}

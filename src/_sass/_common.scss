@@ -62,7 +62,11 @@ img{
         background: lighten($color: #9dc3e6, $amount: 10);
         color: #939393;
         font-weight: 500;
-        font-size: 16px
+        font-size: 16px;
+
+        .layer-name{
+          color: #111;
+        }
       }
 
       &.menu-title{
@@ -130,6 +134,14 @@ img{
         font-weight: 600;
       }
 
+    }
+
+    span.domain-name{
+      color: #999;
+      font-size: 18px;
+      display: inline-block;
+      padding: 0 0 0 30px;
+      margin: 0 0 10px 0;
     }
 
     .sidebar-submenu{
