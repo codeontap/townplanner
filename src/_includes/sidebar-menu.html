@@ -8,14 +8,16 @@
     {%- assign model = site.data._global.domain-model.enterprise -%}
     {%- for layer in model.layers %}
         {%- assign layer_type = layer.type | downcase -%}
+        {%- assign layer_directory = layer.directory -%}
         <li class="{{ layer.name | slugify }}-menu menu-subtitle{% if current_layer == layer_type | downcase %} active{% endif %}">
-        <span class="layer-name" title="{{ layer.description }}">{{ layer.type | capitalize }}</span>
+        <span class="layer-name" title="{{ layer.name }}">{{ layer.type | capitalize }}</span>
             {% capture layer_type %}{{ layer.type | downcase  }}{% endcapture %}
             {%- for domain in layer.domains %}
                 {% capture domain_data %}{{ domain.name | downcase  }}{% endcapture %}
+                {%- assign domain_directory = domain.directory -%}
                 <li class="{{ domain.name | slugify }}-menu {% if current_layer == layer_type and current_domain == domain_data %} active{% endif %}">
                     <a class="domain-name" href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a><span class="accordion">&nbsp;</span>
-                    {% assign collections = site.data[layer_type][domain_data].townplan.collections %}
+                    {% assign collections = site.data[layer_directory][domain_directory].townplan.collections %}
                     <ul class="sidebar-submenu">
                         {%- for collection in collections %}
                         <li>
