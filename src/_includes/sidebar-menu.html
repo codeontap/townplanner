@@ -13,7 +13,7 @@
                     {% assign collections = site.data[layer_type][domain_data].townplan.collections %}
                     <ul class="sidebar-submenu">
                         {%- for collection in collections %}
-                        <li><a href="{{site.url}}/pages/{{layer.type | slugify}}/{{ domain.name | slugify }}{{collection.directory}}/index.html" title="{{ collection.description }}">{{ collection.name }}</a></li>
+                        <li><a href="{{site.url}}/pages/{{layer.type | slugify}}/{{ domain.name | slugify }}/{{collection.directory}}/index.html" title="{{ collection.description }}">{{ collection.name }}</a></li>
                         {%- endfor -%}
                     </ul>
                 </li>
