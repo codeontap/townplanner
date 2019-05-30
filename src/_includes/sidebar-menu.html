@@ -30,8 +30,8 @@
                             <ul class="sidebar-inner-submenu">
                                 {%- for document in collection.documents %}
                                 <li>
-                                    {% if collection.directory == 'apis' %}
-                                        {%- assign api_id = document.page | remove: ".json" | split: "/" | join: "_"  -%}
+                                    {% if collection.type == 'swagger' %}
+                                        {%- assign api_id = document.page | remove: ".json" | split: "/" | join: "_" | replace: "-", "_" -%}
                                         {% capture document_page %}index.html#swagger-ui-{{api_id}}{% endcapture %}
                                     {% else %}
                                         {% capture document_page %}{{document.page | replace: '.md', '.html'}}{% endcapture %}

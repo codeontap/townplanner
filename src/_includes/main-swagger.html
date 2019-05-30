@@ -19,18 +19,14 @@
 
             {%- for api in collection_documents -%}
                 {%- assign data_path = api.page | remove: ".json" | remove: ".yml" | remove: ".yaml" | split: "/"  -%}
-                {%- assign api_data = collection_data -%}
-                {%- for path in data_path -%}
-                    {%- assign api_data = api_data[path] -%}
-                {%- endfor -%}
-                {%- assign api_id = data_path | join: "_" -%}
+                {%- assign api_id = data_path | join: "_" | replace: "-", "_" -%}
 
                 <div id="swagger-ui-{{api_id}}"></div>
                 <script>
                     const {{api_id}} = SwaggerUIBundle({
-                        spec:{{api_data | jsonify }},
+                        url: './{{ api.page }}',
                         dom_id: '#swagger-ui-{{api_id}}'
-                    })
+                    });
                 </script>
             {%- endfor -%}  
         </div>
