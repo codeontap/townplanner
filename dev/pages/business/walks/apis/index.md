@@ -1,3 +1,3 @@
 ---
-layout: swagger
+layout: redoc
 ---

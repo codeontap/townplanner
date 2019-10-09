@@ -32,7 +32,7 @@
                                 <li>
                                     {% if collection.type == 'swagger' %}
                                         {%- assign api_id = document.page | remove: ".json" | split: "/" | join: "_" | replace: "-", "_" -%}
-                                        {% capture document_page %}index.html#swagger-ui-{{api_id}}{% endcapture %}
+                                        {% capture document_page %}index.html#{{api_id}}{% endcapture %}
                                     {% else %}
                                         {% capture document_page %}{{document.page | replace: '.md', '.html'}}{% endcapture %}
                                     {% endif %}
