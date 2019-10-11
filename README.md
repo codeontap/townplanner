@@ -81,3 +81,9 @@ Townplanner currently supports 2 collection types:
 - **markdown** - This will generate the documentation using the provided markdown files using the jekyll markdown engine
 - **swagger** - This will generate a swagger-ui using the specs in the folder
 - **redoc** - Generates API Documentation using [ReDoc](https://github.com/Redocly/redoc)
+
+## Layout and Template
+
+The look and feel of the townplanner site is based on the CloudCannon Template - Edition
+https://github.com/CloudCannon/edition-jekyll-template
+ 
