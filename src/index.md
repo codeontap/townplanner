@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Town Plan
+title: Home
 permalink: /
 ---
-{% include diagram.html %}
+
+{% include_relative pages/index.md %}

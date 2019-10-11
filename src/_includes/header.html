@@ -1,22 +1,16 @@
-<header class="header">
-    <div class="header-line">
-        <div class="wrapper">
-            <div id="mobile-menu-wrapper" class="mobile-menu">
-                <button id="hamburger-menu" class="hamburger-menu">
-                    <span>toggle menu</span>
-                </button>
-                <div id="mobile-menu" style="display: none;">
-                    {% include sidebar-menu.html %}
-                </div>
-            </div>
-           <!-- <a href="/" class="logo"><img src="{{ site.url }}/pages/_global/images/logo.svg" alt=""></a>-->
-        </div>
-    </div>
-    <div class="header-content">
-        <div class="wrapper">
-            <div class="header-text-box">
-                <div class="header-name">Enterprise Integration Architecture</div>
-            </div>
-        </div>
-    </div>
+<header>
+    <h1>
+        <a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/emblem.svg" width="40" height="40" alt="{{ site.data._global.domain-model.enterprise.name }} logo"></a>
+        {{ site.data._global.domain-model.enterprise.name }}
+        <button type="button" class="open-nav" id="open-nav"></button>
+    </h1>
+
+    <form action="{{ site.baseurl }}/search/" method="get">
+        <input type="text" name="q" id="search-input" placeholder="Search" autofocus>
+        <input type="submit" value="Search" style="display: none;">
+    </form>
+
+    <nav {% if site.show_full_navigation %}class="full-navigation"{% endif %}>
+        {% include sidebar-menu.html %}
+    </nav>
 </header>
