@@ -1,12 +1,8 @@
-<div class="main-wrapper">
-    <div class="main-content">
-        <div class="page-sidebar">
-            {% include sidebar-menu.html %}
-        </div>
-        <div class="page-content">
-            <div class="static-content">
-                {{ content | replace: '.md', '.html' }}
-            </div>
-        </div>
+<section class="main">
+    <div class="page-header">
+        <h3>{{ page.title }}</h3>
     </div>
-</div>
+    <article class="content">
+        {{ content }}
+    </article>
+</section>

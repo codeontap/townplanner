@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Town Plan
+title: 
 permalink: /
 ---
 {% include diagram.html %}

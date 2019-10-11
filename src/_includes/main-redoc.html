@@ -1,69 +1,64 @@
 <script src="https://cdn.jsdelivr.net/npm/redoc/bundles/redoc.standalone.js"> </script>
 
-<div class="main-wrapper">
-    <div class="main-content">
-        <div class="page-sidebar">
-            {% include sidebar-menu.html %}
-        </div>
+<div class="page-header">
+    <h3 id="api-title"></h3>
+</div>
 
-        <div class="page-content">
-            <h3 id="api-title"> </h3>
-            <div id="redoc-ui"></div>
-            <script>
-                {%- assign page_dirs = page.url | split: "/" -%}
-                {%- assign layer = page_dirs[2] -%}
-                {%- assign domain = page_dirs[3] -%}
-                {%- assign collection_name = page_dirs[4] -%}
-                {%- assign collection_plan = site.data[layer][domain].townplan.collections | where: "directory", collection_name -%}
-                {%- assign collection_plan = collection_plan[0] -%}
-                {%- assign collection_documents = collection_plan.documents -%}
-                {%- assign collection_data = site.data[layer][domain][collection_name] -%}
+<div class="page-content">
+    <div id="redoc-ui"></div>
+    <script>
+        {%- assign page_dirs = page.url | split: "/" -%}
+        {%- assign layer = page_dirs[2] -%}
+        {%- assign domain = page_dirs[3] -%}
+        {%- assign collection_name = page_dirs[4] -%}
+        {%- assign collection_plan = site.data[layer][domain].townplan.collections | where: "directory", collection_name -%}
+        {%- assign collection_plan = collection_plan[0] -%}
+        {%- assign collection_documents = collection_plan.documents -%}
+        {%- assign collection_data = site.data[layer][domain][collection_name] -%}
 
-                {%- assign apis = "" -%}
-                {%- for api in collection_documents -%}
-                    {%- assign data_path = api.page | remove: ".json" | remove: ".yml" | remove: ".yaml" | split: "/"  -%}
-                    {%- assign api_id = data_path | join: "_" | replace: "-", "_" -%}
+        {%- assign apis = "" -%}
+        {%- for api in collection_documents -%}
+            {%- assign data_path = api.page | remove: ".json" | remove: ".yml" | remove: ".yaml" | split: "/"  -%}
+            {%- assign api_id = data_path | join: "_" | replace: "-", "_" -%}
 
-                    {%- assign api_id = api_id | split: " " -%}
-                    {%- assign api_page = api.page | split: " " -%}
-                    {%- assign api_title = api.title | split: "^" -%} 
-                    {%- assign apis = apis | split: ',' | concat: api_id | concat: api_page | concat: api_title| join: ',' -%}
-                {% endfor %}
+            {%- assign api_id = api_id | split: " " -%}
+            {%- assign api_page = api.page | split: " " -%}
+            {%- assign api_title = api.title | split: "^" -%} 
+            {%- assign apis = apis | split: ',' | concat: api_id | concat: api_page | concat: api_title| join: ',' -%}
+        {% endfor %}
 
-                const availableApis = {{ apis | split: ',' | jsonify }}
+        const availableApis = {{ apis | split: ',' | jsonify }}
 
-                function loadAPI(api_id ) { 
-                    var apiIndex = availableApis.indexOf(api_id)
-                    console.log( "Loading Api: " + api_id );
-                    if ( apiIndex >= 0 ) { 
-                        var apiId = availableApis[ apiIndex ]
-                        var apiDoc = availableApis[ apiIndex + 1 ]
-                        var apiTitile = availableApis[ apiIndex + 2 ]
+        function loadAPI(api_id ) { 
+            var apiIndex = availableApis.indexOf(api_id)
+            console.log( "Loading Api: " + api_id );
+            if ( apiIndex >= 0 ) { 
+                var apiId = availableApis[ apiIndex ]
+                var apiDoc = availableApis[ apiIndex + 1 ]
+                var apiTitile = availableApis[ apiIndex + 2 ]
 
-                        Redoc.init( apiDoc, {}, document.getElementById('redoc-ui') );
-                        document.getElementById("api-title").innerHTML = apiTitile;
-                    }
+                Redoc.init( apiDoc, {}, document.getElementById('redoc-ui') );
+                document.getElementById("api-title").innerHTML = apiTitile;
+            }
+        }
+        console.log( availableApis );
+
+        if ("onhashchange" in window) { // event supported?
+            window.onhashchange = function () {
+                loadAPI( (window.location.hash).replace(/^#/,"") );
+            }
+        }
+        else { // event not supported:
+            var storedHash = window.location.hash;
+            window.setInterval(function () {
+                if (window.location.hash != storedHash) {
+                    storedHash = window.location.hash;
+                    loadAPI( storedHash.replace(/^#/,"") );
                 }
-                console.log( availableApis );
+            }, 100);
+        }
 
-                if ("onhashchange" in window) { // event supported?
-                    window.onhashchange = function () {
-                        loadAPI( (window.location.hash).replace(/^#/,"") );
-                    }
-                }
-                else { // event not supported:
-                    var storedHash = window.location.hash;
-                    window.setInterval(function () {
-                        if (window.location.hash != storedHash) {
-                            storedHash = window.location.hash;
-                            loadAPI( storedHash.replace(/^#/,"") );
-                        }
-                    }, 100);
-                }
-
-                {%- assign api_array = apis | split: ',' -%}
-                loadAPI( "{{ api_array[0] }}" )
-            </script>  
-        </div>
-    </div>
+        {%- assign api_array = apis | split: ',' -%}
+        loadAPI( "{{ api_array[0] }}" )
+    </script>  
 </div>

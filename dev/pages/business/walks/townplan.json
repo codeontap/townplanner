@@ -7,7 +7,7 @@
             "documents" : [
                 {
                     "page" : "index.md",
-                    "Title" : "Home"
+                    "title" : "Home"
                 }
             ]
         },
@@ -22,7 +22,7 @@
                 },
                 {
                     "page" : "walkregister/preproduction/default/v1/swagger.json",
-                    "title" : "Walks Register - Preproduction - V1"
+                    "title" : "Walks Register - PreProd - V1"
                 }
             ]
         }

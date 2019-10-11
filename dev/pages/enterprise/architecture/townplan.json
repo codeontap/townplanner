@@ -6,7 +6,7 @@
             "directory" : "docs",
             "documents" : [
                 {
-                    "page" : "home.md",
+                    "page" : "index.md",
                     "title" : "Home"
                 },
                 {
