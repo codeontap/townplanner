@@ -1,6 +1,5 @@
 ---
+title: World Walks Organisation
 ---
-
-# World Walks Organisation
 
 Documentation for the world walks organisation serivces
