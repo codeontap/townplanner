@@ -1,3 +1,15 @@
+
+<ul>
+    <li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
+        {% assign home = site.html_pages | where: 'url', '/' | first %}
+        <a href="{{ site.baseurl }}/">{{ home.title }}</a>
+    </li>
+    <li class="nav-item top-level {% if page.url == '/townplan' %}current{% endif %}">
+        {% assign townplan = site.html_pages | where: 'url', '/townplan' | first %}
+        <a href="{{ site.baseurl }}/townplan">{{ townplan.title }}</a>
+    </li>
+</ul>
+
 <ul>
     {%- assign current = page.url | downcase | split: '/' -%}
     {%- assign current_layer = current[2] -%}
