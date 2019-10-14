@@ -25,6 +25,17 @@
                     "title" : "Walks Register - PreProd - V1"
                 }
             ]
+        },
+        {
+            "name" : "Change Logs",
+            "type" : "changelog",
+            "directory" : "changelogs",
+            "documents" : [
+                {
+                    "page" : "townplanner.json",
+                    "title" : "Town Planner"
+                }
+            ]
         }
     ]
 }
