@@ -1,130 +1,94 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<div class="page-header">
-    <h3 id="api-title"></h3>
-</div>
 
-<div class="page-content">
-    {%- assign page_dirs = page.url | split: "/" -%}
-    {%- assign layer = page_dirs[2] -%}
-    {%- assign domain = page_dirs[3] -%}
-    {%- assign collection_name = page_dirs[4] -%}
-    {%- assign page_name = page_dirs[5] | remove: '.html' -%}
-    {%- assign collection_data = site.data[layer][domain][collection_name][page_name] -%}
+{%- assign page_dirs = page.url | split: "/" -%}
+{%- assign layer = page_dirs[2] -%}
+{%- assign domain = page_dirs[3] -%}
+{%- assign collection_name = page_dirs[4] -%}
+{%- assign page_name = page_dirs[5] | remove: '.html' -%}
+{%- assign collection_data = site.data[layer][domain][collection_name][page_name] -%}
 
-    <div>
-        {%- assign change_log = collection_data[page_name] | reverse -%}
+{%- assign collection_plan = site.data[layer][domain].townplan.collections | where: "directory", collection_name -%}
+{%- assign collection_plan = collection_plan[0] -%}
 
+{%- assign collection_page = page_name | append: '.md' -%}
+{%- assign collection_document = collection_plan.documents | where: "page", collection_page -%}
+{%- assign collection_document = collection_document[0] -%}
+
+{%- assign change_log = collection_data[page_name] | reverse -%}
+
+<section class="main">
+    <div class="page-header">
+        <h3>{{ collection_document.title }}</h3>
+    </div>
+
+    <article class="content">
+        <h3>Repository Activity</h3>
         <div>
-            <h3>Commits over Time</h3>
             <div id="graph-commits_over_time"></div>
             <script>
-                {%- assign change_dates = "" -%}
-                {%- assign change_counts = "" -%}
 
-                {%- assign change_by_date = change_log | group_by_exp: "change", "change.committer_date | date_to_xmlschema| truncate: 10, ''" -%}
-                {%- for change in change_by_date -%}
-                    {%- assign change_date = change.name | date_to_xmlschema | split: " " -%}
-                    {%- assign change_dates = change_dates | split: ',' | concat: change_date | join: ',' -%}
-                    {%- assign change_count = change.items | size | split: " " -%}
-                    {%- assign change_counts = change_counts | split: ',' | concat: change_count | join: ',' -%}
-                {% endfor %}
+                {%- assign traces = "" -%}
 
-                var data = [{
-                    x: {{ change_dates | split: ','| jsonify }},
-                    y: {{ change_counts | split: ',' | jsonify }},
-                    type: 'scatter'
-                }];
+                {% assign change_by_author = change_log | group_by_exp: "change", "change.author_name_mailmap" %}
+                {% for author in change_by_author %}
 
-                Plotly.newPlot('graph-commits_over_time', data );
+                    {%- assign trace_name = author.name | slugify | replace: "-", "_" | prepend: 'trace_' | split: '^^' -%}
+                    {%- assign traces = traces | split: ',' | concat: trace_name | join: ',' -%}
+                    {%- assign change_dates = "" -%}
+                    {%- assign change_counts = "" -%}
 
-            </script>
-        </div>
+                    {%- assign change_by_date = author.items | group_by_exp: "change", "change.author_date | date_to_xmlschema| truncate: 10, ''" -%}
+                    {%- for change in change_by_date -%}
+                        {%- assign change_date = change.name | date_to_xmlschema | split: " " -%}
+                        {%- assign change_dates = change_dates | split: ',' | concat: change_date | join: ',' -%}
+                        {%- assign change_count = change.items | size | split: " " -%}
+                        {%- assign change_counts = change_counts | split: ',' | concat: change_count | join: ',' -%}
+                    {%- endfor -%}
 
-        <div>
-            <h3>Contributors</h3>
-            <h4>Commit Authors</h4>
-            <div id="graph-contributors"></div>
-            <script>
-                {%- assign authors = "" -%}
-                {%- assign author_change_counts = "" -%}
-
-                {%- assign changes_by_author = change_log | group_by: "author_name_mailmap" -%}
-                {%- for author_change in changes_by_author -%}
-                    {%- assign author = author_change.name | split: "^" -%}
-                    {%- assign authors = authors | split: ',' | concat: author | join: ',' -%}
-                    {%- assign change_count = author_change.items | size | split: " " -%}
-                    {%- assign author_change_counts = author_change_counts | split: ',' | concat: change_count | join: ',' -%}
-                {% endfor %}
-
-                var data = [{
-                    values: {{ author_change_counts | split: ',' | jsonify }},
-                    labels: {{ authors | split: ',' | jsonify }},
-                    type: 'pie'
-                    }];
-
-                    var layout = {
-                    height: 400,
-                    width: 500
+                    var {{ trace_name }} = {
+                        x: {{ change_dates | split: ','| jsonify }},
+                        y: {{ change_counts | split: ',' | jsonify }},
+                        name: {{ author.name | jsonify }},
+                        stackgroup: 'one',
+                        type: 'bar'
                     };
 
-                    Plotly.newPlot('graph-contributors', data );
-
-            </script>
-        </div>
-
-        <div>
-            <h3>Maintainers</h3>
-            <h4>Code committed to branch by</h4>
-            <div id="graph-maintainers"></div>
-            <script>
-                {%- assign authors = "" -%}
-                {%- assign author_change_counts = "" -%}
-
-                {%- assign changes_by_author = change_log | group_by: "committer_name_mailmap" -%}
-                {%- for author_change in changes_by_author -%}
-                    {%- assign author = author_change.name | split: "^" -%}
-                    {%- assign authors = authors | split: ',' | concat: author | join: ',' -%}
-                    {%- assign change_count = author_change.items | size | split: " " -%}
-                    {%- assign author_change_counts = author_change_counts | split: ',' | concat: change_count | join: ',' -%}
                 {% endfor %}
 
-                var data = [{
-                    values: {{ author_change_counts | split: ',' | jsonify }},
-                    labels: {{ authors | split: ',' | jsonify }},
-                    type: 'pie'
-                    }];
+                var data = [ {{ traces | split: ',' | join: ', '  }} ]
+                var layout = {barmode: 'stack'};
 
-                    var layout = {
-                    height: 400,
-                    width: 500
-                    };
-
-                    Plotly.newPlot('graph-maintainers', data );
+                Plotly.newPlot('graph-commits_over_time', data, layout );
 
             </script>
         </div>
 
         {%- assign change_log_grouped = change_log | group_by: "committer_date_relative" -%}
-        <div>
-            <h3>Change Log</h3>
-            {%- for change_group in change_log_grouped -%}
-                <div>
-                    <h3>{{change_group.name}}</h3>
-                </div>
-                {%- for change in change_group.items -%}
-                    <div>
-                        <h4>{{ change.subject }}</h4>
-                        <ul>
-                            <li>{{ change.author_date | date_to_long_string }}</li>
-                            <li>{{ change.commit_hash_abbreviated }}</li>
-                            <li>{{ change.author_name }}</li>
-                        </ul>
-                        <p>{{ change.body }}</p>
+        <h3>Change Log</h3>
+        <div class="changelog-content" >
+            <div class="timeline" >
+                {%- for change_group in change_log_grouped -%}
+                    <div class="left">
+                        <div class="">
+                            <h5>{{change_group.name}}</h5>
+                        </div>
                     </div>
+                    {%- for change in change_group.items -%}
+                        <div class="container right">
+                            <div class="content">
+                                <h4>{{ change.subject }}</h4>
+                                <ul class="commit_detail">
+                                    <li>{{ change.author_date | date_to_long_string }}</li>
+                                    <li>{{ change.commit_hash_abbreviated }}</li>
+                                    <li>{{ change.author_name }}</li>
+                                </ul>
+                                <p>{{ change.body | markdownify }}</p>
+                            </div>
+                        </div>
+                    {%- endfor -%}
                 {%- endfor -%}
-            {%- endfor -%}
+            </div>
         </div>
-
-    </div>
-</div>
+    </article>
+</section>
         
