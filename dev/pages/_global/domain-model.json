@@ -44,6 +44,34 @@
                                 "description" : ""
                             }
                         ]
+                    },
+                    {
+                        "name": "RUNS",
+                        "description": "Management of Registered Runs",
+                        "state" : "active",
+                        "directory" : "runs",
+                        "resources": [
+                            {
+                                "name": "applications",
+                                "description": ""
+                            },
+                            {
+                                "name": "applicants",
+                                "description": ""
+                            },
+                            {
+                                "name": "tests",
+                                "description": ""
+                            },
+                            {
+                                "name" : "certificates",
+                                "description" : ""
+                            },
+                            {
+                                "name"  : "competitions",
+                                "description" : ""
+                            }
+                        ]
                     }
                 ]
             },
