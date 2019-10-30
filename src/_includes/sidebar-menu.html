@@ -31,8 +31,6 @@
             {% assign collections = site.data[layer_directory][domain_directory].townplan.collections %}
             {% if collections.first %}
                 <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name | capitalize }}</a>
-            {% else %}
-                <a >{{ domain.name | capitalize }}</a>
             {% endif %}
             {% if collections.first %}
             <ul class="nav-item {% if current_layer == layer_directory and current_domain == domain_data %}current{% endif %}">

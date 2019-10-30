@@ -84,6 +84,9 @@ img{
     position: relative;
     border: 0;
 
+    &.state-active{
+      background: $active-color;
+    }
     &.state-consulted{
       background: $consulted-color;
     }

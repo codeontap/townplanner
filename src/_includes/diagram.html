@@ -11,11 +11,19 @@
                 <div class="item domain-item state-{{domain.state}}">
                     <div class="domain-name">{{ domain.name }}</div>
                     <div class="domain-content">
-                        <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name }}</a>
+                        {%- if domain.state != "notconsulted" -%}
+                            <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ domain.name }}</a>
+                        {%- else -%}
+                            <a title="{{ domain.description }}">{{ domain.name }}</a>
+                        {%- endif -%}
                         {% for resource in domain.resources %}
                         <span class="item resource-item">
                             {{ resource.name }}
-                            <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ resource.name }}</a>
+                            {%- if domain.state != "notconsulted" -%}
+                                <a href="{{site.url}}/pages/{{layer.directory | slugify}}/{{ domain.directory | slugify }}/docs/index.html" title="{{ domain.description }}">{{ resource.name }}</a>
+                            {%- else -%}
+                                <a title="{{ domain.description }}">{{ resource.name }}</a>
+                            {%- endif -%}
                         </span>
                         {%- endfor %}
                     </div>

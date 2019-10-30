@@ -4,6 +4,7 @@
             "name" : "Documentation",
             "type" : "markdown",
             "directory" : "docs",
+            "source" : "https://github.com/codeontap/townplanner/tree/master/dev/pages",
             "documents" : [
                 {
                     "page" : "index.md",

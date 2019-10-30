@@ -1,6 +1,20 @@
 <section class="main">
     <div class="page-header">
         <h3>{{ page.title }}</h3>
+
+        {%- assign page_dirs = page.url | split: "/" -%}
+        {%- assign layer = page_dirs[2] -%}
+        {%- assign domain = page_dirs[3] -%}
+        {%- assign collection_name = page_dirs[4] -%}
+        {%- assign collection_plan = site.data[layer][domain].townplan.collections | where: "directory", collection_name -%}
+        {%- assign collection_plan = collection_plan[0] -%}
+
+        {% if collection_plan.source != nill %}
+        <a href="{{collection_plan.source}}" >
+            </span><i style="vertical-align: middle;" class="material-icons">inbox</i>
+            Document Source
+        </a>
+        {% endif %}
     </div>
     <article class="content">
         {{ content }}

@@ -48,7 +48,7 @@
                     {
                         "name": "RUNS",
                         "description": "Management of Registered Runs",
-                        "state" : "active",
+                        "state" : "notconsulted",
                         "directory" : "runs",
                         "resources": [
                             {
@@ -78,7 +78,7 @@
             {
                 "type" : "WORLDWALKS",
                 "name" : "World Walks Organisation",
-                "state" : "active",
+                "state" : "consulted",
                 "directory" : "worldwalks",
                 "domains" : [
                     {
